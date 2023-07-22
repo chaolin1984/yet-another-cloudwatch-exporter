@@ -1,9 +1,9 @@
 apiVersion: v1alpha1
-sts-region: us-east-1
+sts-region: ap-southeast-2
 discovery:
   jobs:
     - type: AWS/ECS
-      regions: [us-east-1]
+      regions: [ap-southeast-2]
       period: 300
       length: 300
       metrics:
@@ -20,8 +20,19 @@ discovery:
           statistics:
             - Average
     - type: AWS/EC2
-      regions: [us-east-1]
+      regions: [ap-southeast-2]
       metrics:
         - name: CPUUtilization
+          statistics:
+            - Average
+    - type: AWS/S3
+      regions: [ap-southeast-2]
+      period: 864000
+      length: 864000
+      metrics:
+        - name: NumberOfObjects
+          statistics:
+            - Average
+        - name: BucketSizeBytes
           statistics:
             - Average
