@@ -39,15 +39,16 @@ discovery:
           statistics: [Average, Minimum, Maximum, Sum]
       regions: [us-east-1]
       type: AWS/Route53
-    - metrics:
+    - dimensionNameRequirements: [DistributionId, Region]
+      metrics:
         - length: 60000
           name: BytesDownloaded
           period: 60000
           statistics: [Sum]
         - length: 60000
           name: BytesUploaded
-          # dimensionNameRequirements: [DistributionId, Region]
-          period: 60000                                                                                                                                                                                                            
+                    # dimensionNameRequirements: [DistributionId, Region]
+          period: 60000
           statistics: [Sum]
         - name: 4xxErrorRate
           statistics: [Sum]
@@ -57,97 +58,59 @@ discovery:
         - name: TotalErrorRate
           statistics: [Sum]
       regions: [us-east-1]
-      dimensionNameRequirements: [DistributionId, Region]
-
       type: AWS/CloudFront
+    - length: 300
+      metrics:
+        - name: HealthyHostCount
+          statistics: [Sum]
+        - name: UnHealthyHostCount
+          statistics: [Sum]
+        - name: RequestCount
+          statistics: [Average]
+        - name: TargetResponseTime
+          statistics: [Average]
+        - name: ActiveConnectionCount
+          statistics: [Sum]
+        - name: NewConnectionCount
+          statistics: [Sum]
+        - name: RejectedConnectionCount
+          statistics: [Sum]
+        - name: TargetConnectionErrorCount
+          statistics: [Sum]
+        - name: IPv6RequestCount
+          statistics: [Sum]
+        - name: RequestCountPerTarget
+          statistics: [Sum]
+        - name: NonStickyRequestCount
+          statistics: [Sum]
+        - name: HTTPCode_Target_2XX_Count
+          statistics: [Sum]
+        - name: HTTPCode_Target_3XX_Count
+          statistics: [Sum]
+        - name: HTTPCode_Target_4XX_Count
+          statistics: [Sum]
+        - name: HTTPCode_Target_5XX_Count
+          statistics: [Sum]
+        - name: HTTPCode_ELB_3XX_Count
+          statistics: [Sum]
+        - name: HTTPCode_ELB_4XX_Count
+          statistics: [Sum]
+        - name: HTTPCode_ELB_5XX_Count
+          statistics: [Sum]
+        - name: ProcessedBytes
+          statistics: [Sum]
+        - name: IPv6ProcessedBytes
+          statistics: [Sum]
+        - name: ConsumedLCUs
+          statistics: [Average]
+        - name: ClientTLSNegotiationErrorCount
+          statistics: [Sum]
+        - name: TargetTLSNegotiationErrorCount
+          statistics: [Sum]
+        - name: RuleEvaluations
+          statistics: [Sum]
+      period: 300
+      regions:
+        - ap-southeast-2
+      type: AWS/ApplicationELB
 sts-region: ap-southeast-2
-#   metrics:
-#     - name: Invocations
-#       statistics: [Sum]
-#     - name: Errors
-#       statistics: [Sum]
-#     - name: Throttles
-#       statistics: [Sum]
-#     - name: Duration
-#       statistics: [Average, Maximum, Minimum, p90]
-# - type: AWS/EC2
-#   regions: [ap-southeast-2]
-#     - name: RequestCount
-#       statistics: [Average]
-#     - name: TargetResponseTime
-#       statistics: [Average]
-#     - name: ActiveConnectionCount
-#       statistics: [Sum]
-#     - name: NewConnectionCount
-#       statistics: [Sum]
-#     - name: RejectedConnectionCount
-#       statistics: [Sum]
-#     - name: TargetConnectionErrorCount
-#       statistics: [Sum]
-#     - name: IPv6RequestCount
-#       statistics: [Sum]
-#   metrics:
-#     - name: HealthyHostCount
-#       statistics: [Sum]
-#     - name: UnHealthyHostCount
-#       statistics: [Sum]
-#     - name: RequestCountPerTarget
-#       statistics: [Sum]
-#     - name: NonStickyRequestCount
-#       statistics: [Sum]
-#     - name: HTTPCode_Target_2XX_Count
-#       statistics: [Sum]
-#     - name: HTTPCode_Target_3XX_Count
-#       statistics: [Sum]
-#     - name: HTTPCode_Target_4XX_Count
-#       statistics: [Sum]
-#     - name: HTTPCode_Target_5XX_Count
-#       statistics: [Sum]
-#     - name: HTTPCode_ELB_3XX_Count
-#       statistics: [Sum]
-#     - name: HTTPCode_ELB_4XX_Count
-#       statistics: [Sum]
-#     - name: HTTPCode_ELB_5XX_Count
-#       statistics: [Sum]
-#     - name: ProcessedBytes
-#       statistics: [Sum]
-#     - name: IPv6ProcessedBytes
-#       statistics: [Sum]
-#     - name: ConsumedLCUs
-#       statistics: [Average]
-#     - name: ClientTLSNegotiationErrorCount
-#       statistics: [Sum]
-#     - name: TargetTLSNegotiationErrorCount
-#       statistics: [Sum]
-#     - name: RuleEvaluations
-#       statistics: [Sum]
-# - type: AWS/Lambda
-#   regions: [ap-southeast-2]
-#   period: 300
-#   length: 300
-# - type: AWS/ApplicationELB
-#   regions: [ap-southeast-2]
-#   period: 300
-#   length: 300
-#   metrics:
-#     - name: CPUUtilization
-#       statistics:
-#         - Average#         - Average
-#         period: 60000
-#         length: 60000
-#       - name: HealthCheckPercentageHealthy
-#         statistics:
-# static:
-#   - namespace: AWS/Route53
-#     name: techscrum-frontend-rt53
-#     regions:
-#       - us-east-1
-#     customTags:
-#       - key: Name
-#         value: techsrum-http-health-check
-#     metrics:
-#       - name: HealthCheckStatus
-#         statistics:
-#         - Average
-#         period: 60000
-#         length: 60000
