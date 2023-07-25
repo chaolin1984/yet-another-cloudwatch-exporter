@@ -59,7 +59,7 @@ discovery:
           statistics: [Sum]
       regions: [us-east-1]
       type: AWS/CloudFront
-    - length: 300
+    - length: 60000
       metrics:
         - name: HealthyHostCount
           statistics: [Sum]
@@ -109,7 +109,7 @@ discovery:
           statistics: [Sum]
         - name: RuleEvaluations
           statistics: [Sum]
-      period: 300
+      period: 60000   
       regions:
         - ap-southeast-2
       type: AWS/ApplicationELB
