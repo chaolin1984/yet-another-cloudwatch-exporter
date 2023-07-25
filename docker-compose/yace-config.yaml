@@ -16,6 +16,9 @@ discovery:
         - name: MemoryUtilization
           statistics:
             - Average
+        - name: GPUReservation
+          statistics:
+            - Average
       period: 300
       regions: [ap-southeast-2]
       type: AWS/ECS
