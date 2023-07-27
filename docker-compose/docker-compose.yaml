@@ -43,9 +43,8 @@ services:
       - monitoring
 
   yace:
-    build: 
-      context: ../
-      dockerfile: Dockerfile
+    image: ghcr.io/nerdswords/yet-another-cloudwatch-exporter:v0.53.0
+    container_name: yace
     restart: always
     environment:
       AWS_REGION: ${AWS_REGION}
